@@ -5,3 +5,40 @@
 # 'dot' handles updates, clean-up, etc.
 
 set -e
+
+# shellcheck disable=SC2039
+parentDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
+DOTFILES="$(cd "$( dirname "$parentDirectory" )" && pwd -P)"
+export DOTFILES
+
+displayUsageAndExit() {
+  echo "dot -- dotfiles management"
+  echo ""
+  echo "Usage: dot [options]"
+  echo ""
+  echo "Options:"
+  echo "  -e, --edit    Open dotfiles directory for editing"
+  echo "  -h, --help    Show this help message and exit"
+  exit
+}
+
+while test $# -gt 0; do
+  case "$1" in
+    "-h"|"--help")
+      displayUsageAndExit
+      ;;
+    "-e"|"--edit")
+      exec "$EDITOR" "$DOTFILES"
+      exit
+      ;;
+    *)
+      echo "Invalid option: $1"
+      displayUsageAndExit
+      ;;
+  esac
+  shift
+done
+
+# Install software
+printf "\r  [ \033[00;34m..\033[0m ] %s/install.sh\n" "$DOTFILES"
+"$DOTFILES"/install.sh
