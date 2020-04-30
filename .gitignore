@@ -28,3 +28,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Local/private git config
+/git/gitconfig.local.symlink

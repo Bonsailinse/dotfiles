@@ -1,0 +1,89 @@
+[include]
+  # Local/private config.
+  path = ~/.gitconfig.local
+[color]
+  # Enable colors in color-supporting terminals.
+  ui = auto
+[alias]
+  # List available aliases.
+  git_alias = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+  # Edit last commit message.
+  reword = commit --amend
+  # Undo last commit but keep changed files in stage.
+  uncommit = reset --soft HEAD~1
+[core]
+  # Don't paginate output by default.
+  pager = cat
+  # Don't consider trailing space change as a cause for merge conflicts.
+  whitespace = -trailing-space
+[diff]
+  # Use better, descriptive initials (c, i, w) instead of a/b.
+  mnemonicPrefix = true
+  # Show renames/moves as such
+  renames = true
+  # When using --word-diff, assume --word-diff-regex=.
+  wordRegex = .
+  # Display submodule-related information (commit listings).
+  submodule = log
+[fetch]
+  # Auto-fetch submodule changes (sadly, won't auto-update).
+  recurseSubmodules = on-demand
+[grep]
+  break = true
+  heading = true
+  lineNumber = true
+  # Set extended regex as default.
+  extendedRegexp = true
+[log]
+  # Use abbrev SHAs whenever possible/relevant instead of full 40 chars.
+  abbrevCommit = true
+  # Automatically --follow when given a single path.
+  follow = true
+[merge]
+  # Disable fast-forward merges as default merge strategy.
+  # Force explicit call of `git merge --ff …`.
+  ff = false
+[mergetool]
+  # Clean up backup files created by merge tools on tool exit.
+  keepBackup = false
+  # Clean up temp files created by merge tools on tool exit.
+  keepTemporaries = false
+  # Put the temp files in a dedicated dir anyway.
+  writeToTemp = true
+  # Auto-accept file prompts when launching merge tools.
+  prompt = false
+[page]
+  # Use custom pager to get an better log on terminal.
+  # As this is an external tool it has to be installed.
+  # See https://github.com/so-fancy/diff-so-fancy
+  show = diff-so-fancy | less --tabs=4 -RFX
+[pull]
+  # Passes --rebase-merges to git rebase so that the local merge commits are included.
+  rebase = merges
+[push]
+  # Default push should only push the current branch to its push target, regardless of its remote name.
+  default = upstream
+  # When pushing, also push tags whose commit-ishs are now reachable upstream.
+  followTags = true
+[rerere]
+  # Enable rerere.
+  autoupdate = true
+  enabled = true
+[status]
+  # Display submodule rev change summaries in status.
+  submoduleSummary = true
+  # Recursively traverse untracked directories to display all contents.
+  showUntrackedFiles = all
+[color "branch"]
+  # Blue on black is hard to read in git branch -vv: use cyan instead.
+  upstream = cyan
+[tag]
+  # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+  sort = version:refname
+[versionsort]
+  prereleaseSuffix = -pre
+  prereleaseSuffix = .pre
+  prereleaseSuffix = -beta
+  prereleaseSuffix = .beta
+  prereleaseSuffix = -rc
+  prereleaseSuffix = .rc
