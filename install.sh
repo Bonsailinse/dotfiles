@@ -2,10 +2,12 @@
 #
 # Run all dotfiles installers.
 
+set -e
+
+# shellcheck disable=SC2039
 DOTFILES="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 export DOTFILES
-
-set -e
+sed -i "s!USER_DOTFILES!$DOTFILES!g" "$DOTFILES"/system/env.zsh
 
 echo ''
 
