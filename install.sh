@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1007,SC2039,SC2044,SC2086,SC2166
 #
 # Run all dotfiles installers.
 
 set -e
 
-# shellcheck disable=SC2039
 DOTFILES="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 export DOTFILES
 sed -i "s!USER_DOTFILES!$DOTFILES!g" "$DOTFILES"/system/env.zsh
@@ -41,9 +41,9 @@ setup_gitconfig () {
     fi
 
     user ' - What is your GitHub author name?'
-    read -e git_authorname
+    read -r -e git_authorname
     user ' - What is your GitHub author email?'
-    read -e git_authoremail
+    read -r -e git_authoremail
 
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" "$DOTFILES"/git/gitconfig.local.symlink.example > "$DOTFILES"/git/gitconfig.local.symlink
 
@@ -140,6 +140,3 @@ install_dotfiles
 
 success 'Installation successful.'
 echo ''
-
-# TODO
-# install https://github.com/so-fancy/diff-so-fancy

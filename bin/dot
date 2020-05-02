@@ -23,7 +23,8 @@ while test $# -gt 0; do
       displayUsageAndExit
       ;;
     "-e"|"--edit")
-      exec "$EDITOR" "$DOTFILES"
+      # TODO
+      # "cd $DOTFILES", only in parent shell, or something similar useful
       exit
       ;;
     *)
