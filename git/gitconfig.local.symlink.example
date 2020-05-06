@@ -3,3 +3,7 @@
   email = AUTHOREMAIL
 [credential]
   helper = GIT_CREDENTIAL_HELPER
+[commit]
+  template = COMMITTEMPLATE
+[core]
+    excludesfile = HOMEDIR/.gitignore.global

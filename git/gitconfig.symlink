@@ -16,6 +16,8 @@
   pager = cat
   # Don't consider trailing space change as a cause for merge conflicts.
   whitespace = -trailing-space
+  # Don't convert LF to CRLF on Windows systems.
+  autocrlf = false
 [diff]
   # Use better, descriptive initials (c, i, w) instead of a/b.
   mnemonicPrefix = true
